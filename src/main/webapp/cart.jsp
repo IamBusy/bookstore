@@ -1,7 +1,12 @@
+<%@ page import="java.util.Random" %>
 <?xml version="1.0" encoding="utf8" ?>
 <%@ page language="java" contentType="text/html; charset=utf8"
     pageEncoding="utf8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
+<%
+	Random random = new  Random(88344);
+	Double key = random.nextDouble();
+	session.setAttribute("orderKey", key);
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,6 +23,9 @@
 <script type="text/javascript" src="./resources/js/core.js"></script>
 <script type="text/javascript" src="./resources/js/cart.js"></script>
 
+	<script src="./resources/js/des.js"></script>
+
+
 </head>
 <body>
 <nav class="navbar navbar-inverse" role="navigation">
@@ -27,10 +35,13 @@
 	<div>
 		<ul class="nav navbar-nav">
 			<li><a href="main.jsp">首页</a></li>
-			<li  class="active"><a href="#">购物车<span id="cart_num" class="label label-success"></span></a></li>
+			<li  class="active"><a href="#">购物车
+				<span id="cart_num" style="visibility: hidden" ></span>
+			</a></li>
 			<li><a href="order.jsp">订单</a></li>
 		</ul>
 		<ul class="nav navbar-nav pull-right">
+			<li class="pull-right" ><a href="account.jsp" id="accountTarget"></a></li>
       <%if(session.getAttribute("uid")!=null){ %>
          <li class="pull-right" ><a href="#"><%=session.getAttribute("name")%></a></li>
          <%} %>
@@ -42,7 +53,12 @@
 	<div class="row" id="ordersArea"></div>
 	<div class="row">
 		<div class="col-md-offset-5 col-md-2 col-sm-offset-4 col-sm-4">
-			<input type="button" text="提交订单" class="form-control btn btn-success" id="submitOrder" value="Order!" >
+			<input type="text"  class="form-control" id="password">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-5 col-md-2 col-sm-offset-4 col-sm-4">
+			<input type="button" text="提交订单" key="<%=key%>" class="form-control btn btn-success" id="submitOrder" value="Order!" >
 		</div>
 		
 	</div>

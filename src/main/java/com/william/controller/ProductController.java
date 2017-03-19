@@ -1,8 +1,8 @@
 package com.william.controller;
 
+import com.william.mapper.OrderProductMapper;
 import com.william.mapper.ProductMapper;
-import com.william.model.Product;
-import com.william.model.ProductExample;
+import com.william.model.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,17 +11,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.naming.AuthenticationException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by william on 17/2/28.
  */
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/api/products")
 public class ProductController extends BaseController {
 
     @Autowired
     private ProductMapper productMapper;
+
+    @Autowired
+    private OrderProductMapper orderProductMapper;
 
 
     @RequestMapping(value = "/",method = RequestMethod.GET)
@@ -37,7 +41,6 @@ public class ProductController extends BaseController {
     public void update(@PathVariable Integer id)
     {
         Product product = productMapper.selectByPrimaryKey(id);
-
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
@@ -53,5 +56,7 @@ public class ProductController extends BaseController {
         }
 
     }
+
+
 
 }

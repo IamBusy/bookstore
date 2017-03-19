@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf8" ?>
 <%@ page language="java" contentType="text/html; charset=utf8"
-    pageEncoding="utf8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
+         pageEncoding="utf8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -27,14 +26,19 @@
    <div>
       <ul class="nav navbar-nav">
          <li class="active"><a href="#">首页</a></li>
-         <li ><a href="cart.jsp">购物车<span id="cart_num" class="label label-success">5</span></a></li>
+         <li ><a href="cart.jsp" >购物车
+             <span id="cart_num" style="visibility: hidden"></span>
+         </a></li>
          <li ><a href="order.jsp">订单</a></li>
          <li ><input style="margin-top:8px" type="text" class="form-control" placeholder="输入关键字" id="key"/></li>
          <li><input style="margin-top:8px"  type="button" class="btn btn-info" id="search" value="Search!" /></li>
       </ul>
       
       <ul class="nav navbar-nav pull-right">
-      <%if(session.getAttribute("uid")!=null){ %>
+
+          <li class="pull-right" ><a href="account.jsp" id="accountTarget"></a></li>
+
+          <%if(session.getAttribute("uid")!=null){ %>
          <li class="pull-right" ><a href="account.jsp"><%=session.getAttribute("name")%></a></li>
          <%} %>
       </ul>
@@ -58,7 +62,7 @@
 	</div>
 </div>
 <div class="col-md-3 col-md-4" id="template" style="display:none;margin:0px 10px 10px 10px">
-			<div><IMG class="cover" alt="" src="" style=" cursor:pointer" /></div>
+			<div><IMG class="cover" alt="" src="" style=" cursor:pointer;width: 150px;height: 200px" /></div>
 			<div class="row">
 				<label class="title" style="padding-left:25px"></label>
 				<label class="price pull-right"><font color="red"></font></label>

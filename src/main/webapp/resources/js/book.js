@@ -8,8 +8,9 @@ $(document).ready(function(){
 	$("#addCart").on('click',function(){
 		if($("#num").val()>0)
 		{
-			modifyCart(curBook,$("#num").val());
-			C_prompt("添加成功");
+            modifyCart(curBook,$("#num").val());
+            C_prompt("添加成功");
+
 			return ;
 		}
 		else
@@ -24,28 +25,23 @@ var getBookInfo=function(bid)
 {
 	if(bid==null) return;
 	$.ajax({
-		url:URL_REQUEST+'getBook',
+		url:URL_REQUEST+'products/'+bid,
 		dataType:'json',
 		data:{
 			bid:bid
 		},
 		success:function(data)
 		{
-			if(!data.success)
-			{
-				C_err();
-				return ;
-			}
-			var books=(data.list);
+			var books=(data);
 			console.log(books);
 			
 			if(books!=null)	
 			{
-				
 				var book=books;
 				curBook=book;
-				$("#cover").attr('src',book.cover);
-				$("#title").html(book.title);
+				curBook.bid = book.id;
+				$("#cover").attr('src',book.photo);
+				$("#title").html(book.name);
 				$("#price").html(book.price);
 				$("#author").html(book.author);
 				$("#intro").html(book.intro);

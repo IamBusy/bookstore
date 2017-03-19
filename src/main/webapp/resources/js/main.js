@@ -5,9 +5,9 @@ function dealBook(books)
 	{
 		var book=books[i];
 		var template=$("#template");
-		template.find("img").attr('src',book.cover).attr('bid',book.bid);
+		template.find("img").attr('src',book.photo).attr('bid',book.id);
 		template.find("font").html('￥'+book.price);
-		template.find(".title").html(book.title);
+		template.find(".title").html(book.name);
 		//template.find(".cate").html(book.title);
 		
 		var tmp=template.clone(true);
@@ -59,24 +59,19 @@ $(document).ready(function(){
 
 
 	$.ajax({
-		url:URL_REQUEST+'getCategories',
+		url:URL_REQUEST+'categories',
 		dataType:'json',
 		success:function(data)
 		{
-			if(!data.success)
-			{
-				C_err();
-				return ;
-			}
 			console.log(data.list);
-			var categories=(data.list);
+			var categories=(data);
 			console.log(categories);
 			for(var i=0;i<categories.length;i++)
 			{
 				var cate=categories[i];
 				var ele=$("<a/>").addClass("list-group-item cate")
 					.attr('href','#')
-					.attr('cateId',cate.cateId)
+					.attr('cateId',cate.id)
 					.html(cate.name)
 					.appendTo($("#categoryArea"));
 			}
@@ -89,28 +84,23 @@ $(document).ready(function(){
 		$("#booksArea").html("");
 
 		$.ajax({
-			url:URL_REQUEST+'getBooks',
+			url:URL_REQUEST+'categories/'+cateid+"/products",
 			dataType:'json',
 			data:{
 				cateid:cateid
 			},
 			success:function(data)
 			{
-				if(!data.success)
-				{
-					C_err();
-					return ;
-				}
-				dealBook(data.list);
+				dealBook(data);
 				return ;
-				var books=(data.list);
+				var books=(data);
 				for(var i=0;i<books.length;i++)
 				{
 					var book=books[i];
 					var template=$("#template");
-					template.find("img").attr('src',book.cover).attr('bid',book.bid);
+					template.find("img").attr('src',book.cover).attr('bid',book.id);
 					template.find("font").html('￥'+book.price);
-					template.find(".title").html(book.title);
+					template.find(".title").html(book.name);
 					//template.find(".cate").html(book.title);
 					
 					var tmp=template.clone(true);

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf8" ?>
 <%@ page language="java" contentType="text/html; charset=utf8"
 	pageEncoding="utf8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -31,7 +30,7 @@
 	<div>
 		<ul class="nav navbar-nav">
 			<li class="active"><a href="main.jsp">首页</a></li>
-			<li><a href="cart.jsp">购物车<span id="cart_num" class="label label-success">5</span></a></li>
+			<li><a href="cart.jsp">购物车<span id="cart_num" style="visibility: hidden"></span></a></li>
 			<li><a href="#">订单</a></li>
 		</ul>
 	</div>

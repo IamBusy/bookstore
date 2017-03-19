@@ -44,6 +44,8 @@
     </bean>
 
 
+
+
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.william.mapper" />
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
@@ -53,8 +55,13 @@
 
     <bean id="cart" class="com.william.ejb.Cart" scope="session"></bean>
 
+
     <!-- 使用annotation注解方式配置事务 -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <context:component-scan base-package="com.william.repository"></context:component-scan>
+
+
 
 
 

@@ -11,8 +11,27 @@
 
 
     <sec:http auto-config="true" jaas-api-provision="true">
-        <sec:intercept-url pattern="/secure/**" access="isAuthenticated()"/>
+        <sec:intercept-url pattern="/admin/user.jsp" access="hasRole('ROLE_ADMIN')" />
+        <sec:intercept-url pattern="/admin/order.jsp" access="hasRole('ROLE_ADMIN')" />
+        <sec:intercept-url pattern="/admin/statistic.jsp" access="hasRole('ROLE_ADMIN')" />
+        <sec:intercept-url pattern="/admin/main.jsp" access="hasRole('ROLE_ADMIN')" />
+
+
+        <!--constrain only Manager can browse profiles of users-->
+        <sec:intercept-url pattern="/api/users/info" access="permitAll" />
+        <sec:intercept-url pattern="/api/users/*" access="hasRole('ROLE_ADMIN')" />
+        <sec:intercept-url pattern="/api/users" access="hasRole('ROLE_ADMIN')" />
+
+        <!--permission to view categories-->
+        <sec:intercept-url pattern="/api/categories/76/*" access="hasRole('ROLE_ADMIN')" />
+
+
+        <sec:intercept-url pattern="/**" access="isAuthenticated()"/>
+        <sec:csrf disabled="true"></sec:csrf>
+
+
     </sec:http>
+
 
     <sec:authentication-manager>
         <sec:authentication-provider ref="jaasAuthProvider"/>

@@ -6,8 +6,10 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 
-
+import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 
 /**
@@ -29,6 +31,23 @@ public class Cart {
             result.put(productsInfo.get(id),products.get(id));
         });
         return result;
+    }
+
+    public BigDecimal getPrice()
+    {
+        HashMap<Product,Integer> products = get();
+        BigDecimal total = new BigDecimal(0);
+
+        Iterator iterator =  products.entrySet().iterator();
+        while (iterator.hasNext())
+        {
+            Map.Entry<Product,Integer> entry = (Map.Entry)iterator.next();
+            Product product = entry.getKey();
+            Integer quantity = entry.getValue();
+            total.add(product.getPrice().multiply(new BigDecimal(quantity)));
+        }
+
+        return total;
     }
 
     public void add(Product product,Integer quantity)
@@ -59,6 +78,12 @@ public class Cart {
     {
         products.remove(product.getId());
         productsInfo.remove(product.getId());
+    }
+
+    public void destroy()
+    {
+        products = new HashMap<>();
+        productsInfo = new HashMap<>();
     }
 
 }

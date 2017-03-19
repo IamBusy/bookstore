@@ -29,14 +29,6 @@ public class SimpleLoginModule implements LoginModule {
 
 
 
-    private UserMapper userMapper;
-
-
-    public void setUserMapper(UserMapper userMapper) {
-        this.userMapper = userMapper;
-    }
-
-
     public boolean abort() throws LoginException {
         return true;
     }
@@ -95,15 +87,15 @@ public class SimpleLoginModule implements LoginModule {
 
         subject.getPrincipals().add(new Principal() {
             public String getName() {
-                return "TEST_PRINCIPAL";
+                return user;
             }
         });
-
-        subject.getPrincipals().add(new Principal() {
-            public String getName() {
-                return "NULL_PRINCIPAL";
-            }
-        });
+//
+//        subject.getPrincipals().add(new Principal() {
+//            public String getName() {
+//                return "NULL_PRINCIPAL";
+//            }
+//        });
 
         return true;
     }

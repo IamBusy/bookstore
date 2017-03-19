@@ -152,12 +152,14 @@
             注意，table里面很多参数都是对javaModelGenerator，context等元素的默认属性的一个复写；
          -->
 
-        <table tableName="users" domainObjectName="User"></table>
-        <table tableName="products" domainObjectName="Product"></table>
-        <table tableName="orders" domainObjectName="Order"></table>
-        <table tableName="groups" domainObjectName="Group"></table>
-        <table tableName="categories" domainObjectName="Category"></table>
-
+        <!--<table tableName="users" domainObjectName="User"></table>-->
+        <!--<table tableName="products" domainObjectName="Product"></table>-->
+        <!--<table tableName="product_order" domainObjectName="OrderProduct"></table>-->
+        <!--<table tableName="orders" domainObjectName="Order"></table>-->
+        <!--<table tableName="groups" domainObjectName="Group"></table>-->
+        <!---->
+        <!--<table tableName="categories" domainObjectName="Category"></table>-->
+        <table tableName="user_group" domainObjectName="GroupUser"></table>
 
 
     </context>

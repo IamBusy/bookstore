@@ -9,14 +9,17 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by william on 17/2/28.
  */
 
-@Controller
+@RestController
+@RequestMapping("/api/auth")
 public class AuthController
 {
 
     @RequestMapping("/signin")
-    public String signin()
+    public void signin()
     {
-        return "login";
+
     }
+
+
 
 }
